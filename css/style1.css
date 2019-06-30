@@ -1,0 +1,27 @@
+
+body, html{
+    background-color: #d46e89;
+}
+
+tr, th{
+        color:#ffeff2;;
+     }
+
+     .tableHeader {
+        text-align: center;
+        background: rgb(0, 0, 0, 0.4) ;
+      }
+
+
+tbody, .tableHeader{
+    background: rgb(0, 0, 0, 0.4) ;
+   
+}
+
+tr, td{
+    padding: 5px 10px;
+}
+
+th{
+    padding:10px;
+}
