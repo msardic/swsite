@@ -1,5 +1,3 @@
-https://swapi.co/api/films/?format=json
-
 
 fetch('https://swapi.co/api/films/?format=json')
 .then(function (res) {
@@ -12,18 +10,21 @@ fetch('https://swapi.co/api/films/?format=json')
   let text = "";
 
   detailData.forEach(function (item, i) {
-
+    
+    let filmLink = item.url.split("/");
+    console.log(filmLink[5]);
+    
     
       text +=
 
 
-'<li><a href="index2.html">'+item.title+'</a></li>'
+'<li><a href="film-detail.html?film='+filmLink[5]+'">'+item.title+'</a></li>'
 
 
 
 
   });
-  document.getElementsByClassName("listFilm")[0].innerHTML = text;
+  document.getElementById("listFilm").innerHTML = text;
 
 
 

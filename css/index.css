@@ -1,0 +1,15 @@
+body, html{
+    background-color: #bdbdbd;
+}
+
+.card {
+    background-color:rgba(0, 0, 0, 0.3);
+    border:darkgray;
+    text-align: center;
+    
+}
+
+
+.card-img-top{
+    width: 100%;
+}
