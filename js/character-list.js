@@ -2,7 +2,7 @@ let incomingData = window.location.search;
 
 
 let parsedData;
-debugger;
+
   //= incomingData.split("=");
 if (incomingData=="") {
  parsedData= 1;
@@ -10,7 +10,6 @@ if (incomingData=="") {
 } else {
   parsedData = incomingData.split("=")[1];
 }
-
 
 
 fetch('https://swapi.co/api/people/?format=json&page='+parsedData+'')
@@ -23,7 +22,9 @@ fetch('https://swapi.co/api/people/?format=json&page='+parsedData+'')
 
     let peopleList = "";
 
-    let pageCount = Math.ceil(returnData.count / returnData.results.length);
+
+      //api sayfa başına ne kadar gösterim yapacağını bize bildirmediği için biz varsayılan 10 yapacağız.
+    let pageCount = Math.ceil(returnData.count / 10);
 
 
     let pageList = "";
