@@ -1,8 +1,6 @@
 let incomingData = window.location.search;
 let parsedData = incomingData.split("=");
 
-
-
 fetch('https://swapi.co/api/people/'+parsedData[1]+'/?format=json')
 .then(function (res) {
   return res.json();
@@ -11,29 +9,18 @@ fetch('https://swapi.co/api/people/'+parsedData[1]+'/?format=json')
 
   
   let swData = document.getElementById('characterDetailContainer');
-
+ 
+  returnData.films.forEach(function (item, i) {
   
-  
-  fetch("https://swapi.co/api/people/4/").then(function (res1) {
-    return res1.json();
-  })
-  .then(function (returnData2) {
+    fetch(item).then(function(res){
+      return res.json();
     
-    returnData2.films.forEach(function (item, i) {
-    
-      fetch(item).then(function(res){
-        return res.json();
-
-      }).then(function(returndata3){
-        console.log(returndata3.title)
-         
-      })
+    }).then(function(returnData2){
+      console.log(returnData2.title)
       
-    });
-    
-            
-    });
-   
+})
+});
+ 
 
   
 
@@ -50,7 +37,7 @@ fetch('https://swapi.co/api/people/'+parsedData[1]+'/?format=json')
 '<tr><th>BIRTH YEAR</td><td class="birthYear">'+returnData.birth_year+'</td></tr>'+
 '<tr><th>GENDER</td><td class="gender">'+returnData.gender+'</td></tr>'+
 '<tr><th>HOMEWORLD</td><td class="homeworld">'+returnData.homeworld+'</td></tr>'+
-'<tr><th>FILMS</td><td class="films">'+returnData.films.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
+'<tr><th>FILMS</td><td id="films">'+returnData.films.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
 '<tr><th>SPECIES</td><td class="species">'+returnData.species.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
 '<tr><th>VEHICLES</td><td class="vehicles">'+returnData.vehicles.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
 '<tr><th>STARSHIPS</td><td class="starships">'+returnData.starships.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
@@ -59,5 +46,10 @@ fetch('https://swapi.co/api/people/'+parsedData[1]+'/?format=json')
 );
 
 
+
+
+
   
 })
+
+
