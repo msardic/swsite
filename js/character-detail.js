@@ -16,13 +16,68 @@ fetch('https://swapi.co/api/people/' + parsedData[1] + '/?format=json')
         return res.json();
 
       }).then(function (returnData2) {
-        let deneme= document.getElementById('films');
+        let deneme = document.getElementById('films');
         deneme.insertAdjacentHTML('beforeend',
-        returnData2.title+", "
+          "<li>" + returnData2.title + "</li>"
         )
 
       })
     });
+
+    returnData.species.forEach(function (item, i) {
+
+      fetch(item).then(function (res) {
+        return res.json();
+
+      }).then(function (returnData2) {
+        let deneme = document.getElementById('species');
+        deneme.insertAdjacentHTML('beforeend',
+          "<li>" + returnData2.name + "</li>"
+        )
+
+      })
+    });
+
+    returnData.starships.forEach(function (item, i) {
+
+      fetch(item).then(function (res) {
+        return res.json();
+
+      }).then(function (returnData2) {
+        let deneme = document.getElementById('starships');
+        deneme.insertAdjacentHTML('beforeend',
+          "<li>" + returnData2.name + "</li>"
+        )
+
+      })
+    });
+
+    fetch(returnData.homeworld).then(function (res) {
+      return res.json();
+
+    }).then(function (returnData2) {
+      let deneme = document.getElementById('homeworld');
+      deneme.insertAdjacentHTML('beforeend',
+        "<li>" + returnData2.name + "</li>"
+      )
+
+    })
+
+    returnData.vehicles.forEach(function (item, i) {
+
+      fetch(item).then(function (res) {
+        return res.json();
+
+      }).then(function (returnData2) {
+        let deneme = document.getElementById('vehicles');
+        deneme.insertAdjacentHTML('beforeend',
+          "<li>" + returnData2.name + "</li>"
+        )
+
+      })
+    });
+
+
 
 
     swData.insertAdjacentHTML('afterend',
@@ -37,11 +92,11 @@ fetch('https://swapi.co/api/people/' + parsedData[1] + '/?format=json')
       '<tr><th>EYE COLOR</td><td class="eyeColor">' + returnData.eye_color + '</td></tr>' +
       '<tr><th>BIRTH YEAR</td><td class="birthYear">' + returnData.birth_year + '</td></tr>' +
       '<tr><th>GENDER</td><td class="gender">' + returnData.gender + '</td></tr>' +
-      '<tr><th>HOMEWORLD</td><td class="homeworld">' + returnData.homeworld + '</td></tr>' +
-      '<tr><th>FILMS</td><td id="films"></td></tr>' +
-      '<tr><th>SPECIES</td><td class="species">' + returnData.species.reduce((total, item) => total + (" " + item), "") + '</td></tr>' +
-      '<tr><th>VEHICLES</td><td class="vehicles">' + returnData.vehicles.reduce((total, item) => total + (" " + item), "") + '</td></tr>' +
-      '<tr><th>STARSHIPS</td><td class="starships">' + returnData.starships.reduce((total, item) => total + (" " + item), "") + '</td></tr>' +
+      '<tr><th>HOMEWORLD</td><td><ul id="homeworld"></ul></td></tr>' +
+      '<tr><th>FILMS</td><td><ul id="films"></ul></td></tr>' +
+      '<tr><th>SPECIES</td><td><ul id="species"></ul></td></tr>' +
+      '<tr><th>VEHICLES</td><td><ul id="vehicles"></ul></td></tr>' +
+      '<tr><th>STARSHIPS</td><td><ul id="starships"></ul></td></tr>' +
       '</tbody></table>'
 
     );

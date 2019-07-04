@@ -9,11 +9,82 @@ fetch('https://swapi.co/api/films/'+parsedData[1]+'/?format=json')
 })
 .then(function (returnData) {
 
-  console.log(returnData);
+  
 
   let swData = document.getElementById('filmDetailContainer');
 
- 
+  returnData.characters.forEach(function (item, i) {
+
+    fetch(item).then(function (res) {
+      return res.json();
+
+    }).then(function (returnData2) {
+      let deneme = document.getElementById('characters');
+      deneme.insertAdjacentHTML('beforeend',
+        "<li>" + returnData2.name + "</li>"
+      )
+
+    })
+  });
+
+  returnData.planets.forEach(function (item, i) {
+
+    fetch(item).then(function (res) {
+      return res.json();
+
+    }).then(function (returnData2) {
+      let deneme = document.getElementById('planets');
+      deneme.insertAdjacentHTML('beforeend',
+        "<li>" + returnData2.name + "</li>"
+      )
+
+    })
+  });
+
+  returnData.starships.forEach(function (item, i) {
+
+    fetch(item).then(function (res) {
+      return res.json();
+
+    }).then(function (returnData2) {
+      let deneme = document.getElementById('starships');
+      deneme.insertAdjacentHTML('beforeend',
+        "<li>" + returnData2.name + "</li>"
+      )
+
+    })
+  });
+
+  returnData.vehicles.forEach(function (item, i) {
+
+    fetch(item).then(function (res) {
+      return res.json();
+
+    }).then(function (returnData2) {
+      let deneme = document.getElementById('vehicles');
+      deneme.insertAdjacentHTML('beforeend',
+        "<li>" + returnData2.name + "</li>"
+      )
+
+    })
+  });
+
+  returnData.species.forEach(function (item, i) {
+
+    fetch(item).then(function (res) {
+      return res.json();
+
+    }).then(function (returnData2) {
+      let deneme = document.getElementById('species');
+      deneme.insertAdjacentHTML('beforeend',
+        "<li>" + returnData2.name + "</li>"
+      )
+
+    })
+  });
+
+
+
   swData.insertAdjacentHTML('beforeend',
 
 '<table class="table table-bordered charBox1">'+
@@ -25,11 +96,11 @@ fetch('https://swapi.co/api/films/'+parsedData[1]+'/?format=json')
 '<tr><th>director</td><td class="director">'+returnData.director+'</td></tr>'+
 '<tr><th>producer</td><td class="producer">'+returnData.producer+'</td></tr>'+
 '<tr><th>release date</td><td class="releaseDate">'+returnData.release_date+'</td></tr>'+
-'<tr><th>characters</td><td class="characters">'+returnData.characters.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
-'<tr><th>planets</td><td class="planets">'+returnData.planets.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
-'<tr><th>starships</td><td class="starships">'+returnData.starships.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
-'<tr><th>vehicles</td><td class="vehicles">'+returnData.vehicles.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
-'<tr><th>species</td><td class="species">'+returnData.species.reduce((total,item)=>total + (" "+item),"")+'</td></tr>'+
+'<tr><th>characters</td><td><ul id="characters"></ul></td></tr>'+
+'<tr><th>planets</td><td><ul id="planets"></ul></td></tr>'+
+'<tr><th>starships</td><td><ul id="starships"></ul></td></tr>'+
+'<tr><th>vehicles</td><td><ul id="vehicles"></ul></td></tr>'+
+'<tr><th>species</td><td><ul id="species"></ul></td></tr>'+
 
 '</tbody></table>'
 );
