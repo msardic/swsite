@@ -9,12 +9,33 @@ fetch('https://swapi.co/api/people/'+parsedData[1]+'/?format=json')
 })
 .then(function (returnData) {
 
-  console.log(returnData);
-
+  
   let swData = document.getElementById('characterDetailContainer');
 
+  
+  
+  fetch("https://swapi.co/api/people/4/").then(function (res1) {
+    return res1.json();
+  })
+  .then(function (returnData2) {
+    
+    returnData2.films.forEach(function (item, i) {
+    
+      fetch(item).then(function(res){
+        return res.json();
 
+      }).then(function(returndata3){
+        console.log(returndata3.title)
+         
+      })
+      
+    });
+    
+            
+    });
+   
 
+  
 
   swData.insertAdjacentHTML('afterend',
 
@@ -38,5 +59,5 @@ fetch('https://swapi.co/api/people/'+parsedData[1]+'/?format=json')
 );
 
 
-
+  
 })
