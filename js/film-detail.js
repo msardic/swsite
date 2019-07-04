@@ -8,7 +8,7 @@ fetch('https://swapi.co/api/films/'+parsedData[1]+'/?format=json')
   return res.json();
 })
 .then(function (returnData) {
-
+  
   
 
   let swData = document.getElementById('filmDetailContainer');
