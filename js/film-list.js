@@ -12,7 +12,7 @@ fetch('https://swapi.co/api/films/?format=json')
   detailData.forEach(function (item, i) {
     
     let filmLink = item.url.split("/");
-    console.log(filmLink[5]);
+    
     
     
       text +=
